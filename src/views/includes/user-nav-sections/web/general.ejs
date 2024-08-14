@@ -1,0 +1,7 @@
+<!-- link should be not be viewed by an admin -->
+<% if (!isAdminLoggedIn) { %>
+<li class="main-header__item">
+    <i class="fas fa-shopping-bag shop-icon"></i>
+    <a id="products" class="<%= path === '/products' ? 'active' : '' %>" href="/products?page=1">Products</a>
+</li>
+<% } %>

@@ -1,0 +1,50 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/product.css">
+<link rel="stylesheet" href="/css/css/all.min.css">
+
+</head>
+
+<body>
+    <%- include('../includes/user-nav.ejs') %>
+    <%- include('../includes/prompt_admin.ejs') %>
+<%- include('../includes/categories.ejs',{path:'category'}) %>
+    
+    <% if (productsData) { %>
+    
+    <div class="container grid">
+        <div class="grid">
+            <% for (let product of productsData.products) { %>
+                <a href="/product/<%= product._id %>"  style="text-decoration: none;">
+                    <article class="card product-item">
+                        <header class="card__header">
+                            <h1 class="product__title">
+                                <%= product.title %>
+                            </h1>
+                        </header>
+                        <div class="card__image">
+                            <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+                        </div>
+                        <div class="card__content">
+                            <header class="card__header">
+                                <h1 class="product__title"><%= product.title %></h1>
+                            </header>
+                            <h2 class="product__price">Ksh <%= product.sellingPrice %></h2>
+                            <p class="product__description"> <%= product.description %></p>
+                        </div>
+                        <div class="card__actions">
+                            <%- include('../includes/add-to-cart.ejs',{product}) %>
+                        </div>
+                    </article>
+                </a>
+           
+            <% } %>
+        </div>
+    </div>
+        
+    <%- include('../includes/pagination.ejs') %>
+    <% } else { %>
+    <h1>No Products Found!</h1>
+    <% } %>
+    </main>
+
+    <%- include('../includes/end.ejs') %>
